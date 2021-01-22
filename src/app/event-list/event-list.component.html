@@ -1,0 +1,34 @@
+<div class="my-16" fxLayout="row" fxLayoutAlign="end center">
+  <button mat-raised-button color="primary" routerLink="create">
+    <mat-icon class="s-24 mr-4">add</mat-icon>
+    Create New
+  </button>
+
+</div>
+<h1 color="primary" >Liste de evenements</h1>
+<mat-divider ></mat-divider>
+
+<mat-grid-list cols="3" rowHeight="2:1">
+  <mat-grid-tile  *ngFor="let event of dataSource">
+    <mat-card class="example-card" >
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{event.titre}}</mat-card-title>
+        <mat-card-subtitle>{{event.date | date :'d MMMM y, HH:mm'}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>l'evenement sera à {{event.lieu}}</p>
+      </mat-card-content>
+      <mat-card-actions fxLayout="row" fxLayoutAlign="space-around center">
+        <button mat-fab color="primary" fxFlex="20" [routerLink]="event.id + '/edit'">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-fab color="primary" fxFlex="20" color="warn" (click)="onRemove(event.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+

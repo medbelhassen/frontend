@@ -1,0 +1,41 @@
+<div class="my-16" fxLayout="row" fxLayoutAlign="end center">
+  <button mat-raised-button color="primary" routerLink="create">
+    <mat-icon class="s-24 mr-4">add</mat-icon>
+    Create New
+  </button>
+
+</div>
+
+<h1>Liste de publications</h1>
+<mat-divider color="primary"></mat-divider>
+
+<mat-grid-list cols="3" rowHeight="2:1">
+  <mat-grid-tile  *ngFor="let pub of dataSource">
+    <mat-card class="example-card" >
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{pub.titre}}</mat-card-title>
+        <mat-card-subtitle>{{pub.dateApparition }}</mat-card-subtitle>
+      </mat-card-header>
+      <!--    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
+      <mat-card-content>
+        <p>
+          {{pub.type}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions fxLayout="row" fxLayoutAlign="space-around center">
+        <button mat-button color="primary" fxFlex="20">Lien</button>
+        <a target="_blank" fxFlex="25" [href]="pub.sourcePdf">
+          <mat-icon>picture_as_pdf</mat-icon>
+        </a>
+        <button mat-icon-button fxFlex="20">
+          <mat-icon mat-icon-button [routerLink]="pub.id + '/edit'">edit</mat-icon>
+        </button>
+        <button mat-icon-button fxFlex="20" color="warn" (click)="onRemove(pub.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

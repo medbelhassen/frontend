@@ -1,0 +1,101 @@
+
+<h3 *ngIf="!verification">Créer un nouveau membre</h3>
+<h3 *ngIf="verification">Modifier le membre {{item.prenom}} {{item.nom}}</h3>
+<mat-tab-group [selectedIndex]="index">
+  <mat-tab label="Etudiant" *ngIf="(verification && action1) || !verification">
+
+    <form [formGroup]="formEtudiant" *ngIf="!!formEtudiant" (ngSubmit)="onSubmitEtudiant()" class="form" fxLayout="column">
+  <mat-form-field>
+    <input matInput placeholder="cin" formControlName="cin">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="nom" formControlName="nom">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="prenom" formControlName="prenom">
+  </mat-form-field>
+<!--  <mat-form-field>-->
+<!--    <mat-label>Date de naissance</mat-label>-->
+<!--    <input matInput [matDatepicker]="picker" formControlName="datenaissance">-->
+<!--    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
+<!--    <mat-datepicker #picker></mat-datepicker>-->
+<!--  </mat-form-field>-->
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dateNaissance">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+  <mat-form-field>
+  <input matInput placeholder="cv" formControlName="cv">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Entrer le lien de l'image" formControlName="photo">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Entrer un email" formControlName="email">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="sujet" formControlName="sujet">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="diplome" formControlName="diplome">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Encadrant" formControlName="encadrant_id">
+      <mat-option *ngFor="let x of liste" [value]="x.id" >
+        {{x.prenom}} {{x.nom}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+<!--  <mat-form-field>-->
+<!--    <mat-label>Date d'inscription</mat-label>-->
+<!--    <input matInput [matDatepicker]="picker1" formControlName="dateInscription">-->
+<!--    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>-->
+<!--    <mat-datepicker #picker1></mat-datepicker>-->
+<!--  </mat-form-field>-->
+  <div class="form-element">
+    <button mat-raised-button color="primary" type="submit" class="button" [disabled]="formEtudiant.invalid">Submit</button>
+  </div>
+</form>
+  </mat-tab>
+  <mat-tab label="Enseignant" *ngIf="(verification && action2) || !verification" >
+
+    <form [formGroup]="formEnseignant" *ngIf="!!formEnseignant" (ngSubmit)="onSubmitEnseignant()" class="form" fxLayout="column">
+      <mat-form-field>
+        <input matInput placeholder="cin" formControlName="cin">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="nom" formControlName="nom">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="prenom" formControlName="prenom">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="dateNaissance">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="cv" formControlName="cv">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Entrer le lien de l'image" formControlName="photo">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Entrer un email" formControlName="email">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Etablissement" formControlName="etablissement">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Grade" formControlName="grade">
+      </mat-form-field>
+      <div class="form-element">
+        <button mat-raised-button color="primary" type="submit" class="button" [disabled]="formEnseignant.invalid">Submit</button>
+      </div>
+    </form>
+  </mat-tab>
+</mat-tab-group>
+
